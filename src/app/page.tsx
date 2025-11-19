@@ -1,4 +1,5 @@
 import { client } from "@/sanity/lib/client";
+import { homepageQuery } from "@/sanity/lib/queries";
 import Hero from "@/components/home/Hero";
 import ProductCard from "@/components/product/ProductCard";
 import Link from "next/link";
@@ -19,12 +20,26 @@ async function getFeaturedProducts() {
   }
 }
 
+async function getHomepageData() {
+  try {
+    return await client.fetch(homepageQuery);
+  } catch (error) {
+    console.error("Sanity fetch error:", error);
+    return null;
+  }
+}
+
 export default async function Home() {
   const products = await getFeaturedProducts();
+  const homepageData = await getHomepageData();
 
   return (
     <div className="pb-20">
-      <Hero />
+      <Hero
+        heroImage={homepageData?.heroImage}
+        heroTitle={homepageData?.heroTitle}
+        heroSubtitle={homepageData?.heroSubtitle}
+      />
 
       <section className="container mx-auto px-6 py-20">
         <div className="flex justify-between items-end mb-12">

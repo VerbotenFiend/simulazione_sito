@@ -42,6 +42,26 @@ export default defineType({
             type: 'text',
         }),
         defineField({
+            name: 'openingHours',
+            title: 'Opening Hours',
+            type: 'array',
+            of: [{ type: 'string' }],
+            description: 'List of opening hours (e.g., "Mon-Fri: 9am-6pm")',
+        }),
+        defineField({
+            name: 'primaryColor',
+            title: 'Primary Color',
+            type: 'string',
+            description: 'Hex color code (e.g., #1a1a1a)',
+            initialValue: '#1a1a1a',
+        }),
+        defineField({
+            name: 'googleMapsEmbedUrl',
+            title: 'Google Maps Embed URL',
+            type: 'text',
+            description: 'Paste the "Embed a map" HTML src URL here (just the url inside src="")',
+        }),
+        defineField({
             name: 'socialLinks',
             title: 'Social Links',
             type: 'array',

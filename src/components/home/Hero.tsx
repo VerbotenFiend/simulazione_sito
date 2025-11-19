@@ -1,21 +1,37 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { urlForImage } from '@/sanity/lib/image';
 
-export default function Hero() {
+interface HeroProps {
+    heroImage?: any;
+    heroTitle?: string;
+    heroSubtitle?: string;
+}
+
+export default function Hero({ heroImage, heroTitle, heroSubtitle }: HeroProps) {
     return (
         <section className="relative h-[80vh] flex items-center justify-center overflow-hidden bg-gray-900 text-white">
-            {/* Background Image Placeholder - In real app, fetch from Sanity */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-black/40 z-10" />
-                {/* <Image src={...} alt="Hero" fill className="object-cover" /> */}
-                <div className="w-full h-full bg-gray-800 animate-pulse" />
+                {heroImage ? (
+                    <Image
+                        src={urlForImage(heroImage).url()}
+                        alt="Hero Background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                ) : (
+                    <div className="w-full h-full bg-gray-800 animate-pulse" />
+                )}
             </div>
 
             <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
                 <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tight">
-                    Nuova Collezione Autunno/Inverno
+                    {heroTitle || "Nuova Collezione Autunno/Inverno"}
                 </h1>
                 <p className="text-xl md:text-2xl mb-10 text-gray-200 font-light">
-                    Scopri l'eleganza che definisce il tuo stile. Materiali pregiati e design senza tempo.
+                    {heroSubtitle || "Scopri l'eleganza che definisce il tuo stile. Materiali pregiati e design senza tempo."}
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center">
                     <Link
