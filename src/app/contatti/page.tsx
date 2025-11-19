@@ -61,15 +61,21 @@ export default async function ContactPage() {
                     {/* Map */}
                     <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center text-gray-500 relative">
                         {settings?.googleMapsEmbedUrl ? (
-                            <iframe
-                                src={settings.googleMapsEmbedUrl}
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0 }}
-                                allowFullScreen
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                            />
+                            settings.googleMapsEmbedUrl.startsWith('https://www.google.com/maps/embed') ? (
+                                <iframe
+                                    src={settings.googleMapsEmbedUrl}
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                />
+                            ) : (
+                                <div className="p-4 text-center text-sm text-red-500">
+                                    URL Mappa non valido. Assicurati di usare il link "Embed a map" (Incornicia mappa) che inizia con <code>https://www.google.com/maps/embed</code>
+                                </div>
+                            )
                         ) : (
                             <span>Mappa non configurata</span>
                         )}

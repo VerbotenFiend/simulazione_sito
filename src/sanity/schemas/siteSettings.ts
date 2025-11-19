@@ -51,15 +51,17 @@ export default defineType({
         defineField({
             name: 'primaryColor',
             title: 'Primary Color',
-            type: 'string',
-            description: 'Hex color code (e.g., #1a1a1a)',
-            initialValue: '#1a1a1a',
+            type: 'color',
+            description: 'Pick the primary color for the website',
+            options: {
+                disableAlpha: true,
+            }
         }),
         defineField({
             name: 'googleMapsEmbedUrl',
             title: 'Google Maps Embed URL',
             type: 'text',
-            description: 'Paste the "Embed a map" HTML src URL here (just the url inside src="")',
+            description: 'IMPORTANT: Go to Google Maps -> Share -> Embed a map -> Copy HTML. Then paste ONLY the URL inside the src="" attribute here. It should start with "https://www.google.com/maps/embed..."',
         }),
         defineField({
             name: 'socialLinks',

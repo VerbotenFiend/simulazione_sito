@@ -11,7 +11,7 @@ export const siteSettingsQuery = groq`
     address,
     socialLinks,
     openingHours,
-    primaryColor,
+    "primaryColor": primaryColor.hex,
     googleMapsEmbedUrl
   }
 `;

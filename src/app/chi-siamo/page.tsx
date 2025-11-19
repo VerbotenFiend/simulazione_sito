@@ -75,9 +75,9 @@ export default async function AboutPage() {
             <section className="bg-secondary py-20">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl font-serif font-bold mb-12 text-center">I Nostri Valori</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="flex flex-wrap justify-center gap-8">
                         {data?.values?.map((value: any, index: number) => (
-                            <div key={index} className="bg-white p-8 rounded-lg shadow-sm text-center">
+                            <div key={index} className="bg-white p-8 rounded-lg shadow-sm text-center w-full md:w-[calc(33.333%-2rem)] min-w-[280px]">
                                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
                                     {value.icon || value.title?.charAt(0) || (index + 1)}
                                 </div>
@@ -88,7 +88,7 @@ export default async function AboutPage() {
                             </div>
                         ))}
                         {(!data?.values || data.values.length === 0) && (
-                            <div className="col-span-3 text-center text-gray-500">
+                            <div className="w-full text-center text-gray-500">
                                 Nessun valore configurato.
                             </div>
                         )}
